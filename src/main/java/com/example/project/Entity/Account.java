@@ -6,8 +6,6 @@ import lombok.*;
 @Entity
 @Table(name = "accounts")
 @Data
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 // Thông tin đăng nhập
@@ -28,4 +26,6 @@ public class Account extends BaseEntity{
     private String image;
     @Column(name = "address")
     private String address;
+    @OneToOne(mappedBy = "account", fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private User user;
 }

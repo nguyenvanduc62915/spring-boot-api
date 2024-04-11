@@ -10,8 +10,6 @@ import java.util.List;
 @Entity
 @Table(name = "Categories")
 @Data
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 // Danh mục

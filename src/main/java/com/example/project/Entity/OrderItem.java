@@ -9,8 +9,6 @@ import java.util.List;
 @Entity
 @Table(name = "OrderItems")
 @Data
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 // Hóa đơn

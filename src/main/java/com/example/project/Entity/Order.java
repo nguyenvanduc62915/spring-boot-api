@@ -8,8 +8,6 @@ import lombok.*;
 @Entity
 @Table(name = "Orders")
 @Data
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 // Giỏ hàng

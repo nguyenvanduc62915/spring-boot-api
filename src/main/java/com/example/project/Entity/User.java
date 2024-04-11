@@ -10,8 +10,6 @@ import java.util.List;
 @Entity
 @Table(name = "Users")
 @Data
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 // Nguòi dùng
@@ -36,4 +34,7 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JsonIgnore
     private List<Order> orders;
+    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "account_id")
+    private Account account;
 }

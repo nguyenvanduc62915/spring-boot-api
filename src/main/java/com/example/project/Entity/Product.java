@@ -11,8 +11,6 @@ import java.util.List;
 @Entity
 @Table(name = "Products")
 @Data
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 // Sản phẩm
