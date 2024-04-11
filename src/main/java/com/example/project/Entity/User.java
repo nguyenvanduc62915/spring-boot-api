@@ -1,18 +1,20 @@
 package com.example.project.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.*;
-import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.List;
 
 @Entity
-@Builder
 @Table(name = "Users")
 @Data
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+// Nguòi dùng
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,13 +27,13 @@ public class User {
     private String lastName;
     @Column(name = "email")
     private String email;
-    @Column(name = "password")
-    private String password;
     @Column(name = "image")
     private String image;
     @Column(name = "address")
     private String address;
     @Column(name = "phone_number")
     private String phoneNumber;
-    private Role role;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JsonIgnore
+    private List<Order> orders;
 }

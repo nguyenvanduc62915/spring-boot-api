@@ -1,19 +1,19 @@
 package com.example.project.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.*;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 
 @Entity
-@Builder
 @Table(name = "Orders")
 @Data
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Order extends BaseEntity{
+// Giỏ hàng
+public class Order extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id")
@@ -30,4 +30,14 @@ public class Order extends BaseEntity{
     @Column(name = "shipping_address")
     @Size(max = 500, message = "Địa chỉ nhận hàng không được vượt quá 500 ký tự!")
     private String shippingAddress;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "order_item_id", foreignKey = @ForeignKey(name = "FK_orderitem_order"))
+    private OrderItem orderItem;
+    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "payment_method_id", foreignKey = @ForeignKey(name = "FK_paymentMethod_order"))
+    @JsonIgnore
+    private PaymentMethod paymentMethod;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "FK_user_order"))
+    private User user;
 }

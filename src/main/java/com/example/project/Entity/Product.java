@@ -1,17 +1,21 @@
 package com.example.project.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
-@Builder
 @Table(name = "Products")
 @Data
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+// Sản phẩm
 public class Product extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,4 +34,10 @@ public class Product extends BaseEntity{
     private String description;
     @Column(name = "active")
     private Boolean active;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id", foreignKey = @ForeignKey(name = "FK_category_product"))
+    private Category category;
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JsonIgnore
+    private List<OrderItem> orderItems;
 }

@@ -1,22 +1,20 @@
 package com.example.project.Entity;
 
-import ch.qos.logback.core.joran.action.AppenderRefAction;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Size;
 import lombok.*;
-import org.hibernate.validator.constraints.Length;
 
-import java.time.LocalDate;
+import java.util.List;
 
 @Entity
-@Builder
 @Table(name = "Categories")
 @Data
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+// Danh mục
 public class Category extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,4 +29,7 @@ public class Category extends BaseEntity {
     private String description;
     @Column(name = "active")
     private Boolean active;
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JsonIgnore
+    private List<Product> products;
 }
