@@ -4,8 +4,15 @@ spring:
     username: root
     password: 0993337423A@a
     driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      schema: classpath:dbinit.sql # sử dụng file 'dbinit.sql' để khởi tạo cơ sở dũ liệu
+    sql:
+      init:
+        mode: always # luôn khởi tạo lại dữ liệu từ file
   jpa:
     hibernate:
       ddl-auto: update
     database: mysql
     show-sql: true
+server:
+  port: 8080

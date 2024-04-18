@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "accounts")
+@Table(name = "accounts") // Đăt tên bảng
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,6 +26,6 @@ public class Account extends BaseEntity{
     private String image;
     @Column(name = "address")
     private String address;
-    @OneToOne(mappedBy = "account", fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @OneToOne(mappedBy = "account", fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}) // Nếu xóa trên đối tượng Account thì các đối tượng liên quan user không bị ảnh hưởng
     private User user;
 }

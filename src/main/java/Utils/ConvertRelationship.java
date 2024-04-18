@@ -24,13 +24,10 @@ public class ConvertRelationship {
     public CategoryDTO convertToCategoryDTO(Category category) {
         CategoryDTO categoryDTO = new CategoryDTO();
         categoryDTO.setCategoryId(category.getCategoryId());
-        categoryDTO.setImage(category.getImage());
         categoryDTO.setName(category.getName());
         categoryDTO.setCreatedAt(category.getCreatedAt());
         categoryDTO.setUpdatedAt(category.getUpdatedAt());
-        categoryDTO.setActive(category.getActive());
         categoryDTO.setProducts(category.getProducts());
-        categoryDTO.setDescription(category.getDescription());
         return categoryDTO;
     }
 

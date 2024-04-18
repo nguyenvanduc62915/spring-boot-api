@@ -11,7 +11,7 @@ import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_NULL) // Các trường null không được trả về kết quả để giảm tải dung lượng
 public class AccountDTO {
     private Long accountId;
     @NotBlank(message = "Tên không được bỏ trống")
