@@ -1,5 +1,6 @@
 package com.example.project.Service;
 
+import com.example.project.Repository.UserRepository;
 import com.example.project.Utils.ConvertRelationship;
 import com.example.project.DTO.AccountDTO;
 import com.example.project.DTO.BaseResponse;
@@ -16,6 +17,9 @@ import java.util.List;
 public class AccountService implements AccountImp {
     @Autowired
     private AccountRepository accountRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private ConvertRelationship convertRelationship;
@@ -85,9 +89,14 @@ public class AccountService implements AccountImp {
     }
 
     @Override
-    public BaseResponse<AccountDTO> addAccount(AccountDTO accountDTO, Long userId) {
+    public BaseResponse<AccountDTO> addAccount(AccountDTO accountDTO) {
         BaseResponse<AccountDTO> baseResponse = new BaseResponse<>();
         try {
+//            if (!userRepository.existsById(userId)){
+//                baseResponse.setMessage("User không tồn tại");
+//                baseResponse.setCode(404);
+//                return baseResponse;
+//            }
             Account account = new Account();
             account.setAccountId(accountDTO.getAccountId());
             account.setAddress(accountDTO.getAddress());
@@ -95,7 +104,6 @@ public class AccountService implements AccountImp {
             account.setEmail(accountDTO.getEmail());
             account.setFirstName(accountDTO.getFirstName());
             account.setPassword(accountDTO.getPassword());
-            account.setUpdatedAt(accountDTO.getUpdatedAt());
             account.setCreatedAt(accountDTO.getCreatedAt());
             account.setLastName(accountDTO.getLastName());
             accountRepository.save(account);
@@ -110,7 +118,7 @@ public class AccountService implements AccountImp {
     }
 
     @Override
-    public BaseResponse<AccountDTO> updateAccount(Long accountId, AccountDTO accountDTO, Long userId) {
+    public BaseResponse<AccountDTO> updateAccount(Long accountId, AccountDTO accountDTO) {
         BaseResponse<AccountDTO> baseResponse = new BaseResponse<>();
         try {
             Account account = accountRepository.findAccountById(accountId);
@@ -126,14 +134,13 @@ public class AccountService implements AccountImp {
             account.setFirstName(accountDTO.getFirstName());
             account.setPassword(accountDTO.getPassword());
             account.setUpdatedAt(accountDTO.getUpdatedAt());
-            account.setCreatedAt(accountDTO.getCreatedAt());
             account.setLastName(accountDTO.getLastName());
             accountRepository.save(account);
             baseResponse.setData(accountDTO);
             baseResponse.setMessage("Thành công");
             baseResponse.setCode(200);
         } catch (Exception ex){
-            baseResponse.setMessage("Lỗi trong quá trình thêm Account");
+            baseResponse.setMessage("Lỗi trong quá trình update Account");
             baseResponse.setCode(500);
         }
         return baseResponse;

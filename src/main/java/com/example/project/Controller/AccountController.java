@@ -24,27 +24,25 @@ public class AccountController {
         return new ResponseEntity<>(baseResponse, HttpStatus.valueOf(baseResponse.getCode()));
     }
 
-    @GetMapping("/get/{id}")
-    public ResponseEntity<BaseResponse<AccountDTO>> getAllAccountById(@PathVariable("id") Long accountId) {
+    @GetMapping("/get")
+    public ResponseEntity<BaseResponse<AccountDTO>> getAllAccountById(@RequestParam("id") Long accountId) {
         BaseResponse<AccountDTO> baseResponse = accountService.getAllAccountById(accountId);
         return new ResponseEntity<>(baseResponse, HttpStatus.valueOf(baseResponse.getCode()));
     }
 
     @PostMapping("/add")
     public ResponseEntity<BaseResponse<AccountDTO>> addAccount(
-            @Valid @RequestBody AccountDTO accountDTO,
-            @RequestParam Long userId
+            @Valid @RequestBody AccountDTO accountDTO
     ) {
-        BaseResponse<AccountDTO> baseResponse = accountService.addAccount(accountDTO, userId);
+        BaseResponse<AccountDTO> baseResponse = accountService.addAccount(accountDTO);
         return new ResponseEntity<>(baseResponse, HttpStatus.valueOf(baseResponse.getCode()));
     }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<BaseResponse<AccountDTO>> updateAccount(
             @PathVariable("id") Long id,
-            @Valid @RequestBody AccountDTO accountDTO,
-            @RequestParam Long userId) {
-        BaseResponse<AccountDTO> baseResponse = accountService.updateAccount(id, accountDTO, userId);
+            @Valid @RequestBody AccountDTO accountDTO) {
+        BaseResponse<AccountDTO> baseResponse = accountService.updateAccount(id, accountDTO);
         return new ResponseEntity<>(baseResponse, HttpStatus.valueOf(baseResponse.getCode()));
     }
 
