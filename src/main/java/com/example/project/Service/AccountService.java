@@ -1,12 +1,10 @@
 package com.example.project.Service;
 
-import Utils.ConvertRelationship;
+import com.example.project.Utils.ConvertRelationship;
 import com.example.project.DTO.AccountDTO;
 import com.example.project.DTO.BaseResponse;
 import com.example.project.Entity.Account;
-import com.example.project.Entity.User;
 import com.example.project.Repository.AccountRepository;
-import com.example.project.Repository.UserRepository;
 import com.example.project.Service.Imp.AccountImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

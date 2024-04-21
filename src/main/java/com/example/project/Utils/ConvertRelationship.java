@@ -1,4 +1,4 @@
-package Utils;
+package com.example.project.Utils;
 
 import com.example.project.DTO.*;
 import com.example.project.Entity.*;
