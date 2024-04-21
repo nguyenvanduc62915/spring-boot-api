@@ -1,8 +1,6 @@
 package com.example.project.Entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -16,4 +14,12 @@ public class BaseEntity {
     private LocalDate createdAt;
     @Column(name = "update_at")
     private LocalDate updatedAt;
+    @PrePersist
+    public void prePersist(){
+        this.createdAt = LocalDate.now();
+    }
+    @PreUpdate
+    public void preUpdate(){
+        this.updatedAt = LocalDate.now();
+    }
 }

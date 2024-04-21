@@ -26,6 +26,6 @@ public class ProductDTO { @Column(name = "product_id")
     private Boolean active;
     private LocalDate createdAt;
     private LocalDate updatedAt;
-    private Category category;
-    private List<OrderItem> orderItems;
+    private CategoryDTO category;
+    private List<OrderItemDTO> orderItems;
 }

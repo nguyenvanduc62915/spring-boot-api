@@ -17,5 +17,5 @@ public class PaymentMethodDTO {
     private Integer paymentMethodId;
     private String name;
     private Boolean active;
-    private Order order;
+    private OrderDTO order;
 }

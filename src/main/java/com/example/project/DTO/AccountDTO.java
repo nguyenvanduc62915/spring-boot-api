@@ -25,5 +25,5 @@ public class AccountDTO {
     private String address;
     private LocalDate createdAt;
     private LocalDate updatedAt;
-    private User user;
+    private UserDTO user;
 }

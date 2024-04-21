@@ -23,5 +23,5 @@ public class OrderItemDTO {
     private Product product;
     private LocalDate createdAt;
     private LocalDate updatedAt;
-    private List<Order> orders;
+    private List<OrderDTO> orders;
 }

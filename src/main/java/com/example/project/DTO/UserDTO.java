@@ -26,6 +26,6 @@ public class UserDTO {
     private String image;
     private String address;
     private String phoneNumber;
-    private List<Order> orders;
-    private Account account;
+    private List<OrderDTO> orders;
+    private AccountDTO account;
 }

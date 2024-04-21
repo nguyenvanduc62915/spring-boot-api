@@ -27,5 +27,5 @@ public class CategoryDTO {
     private Boolean active;
     private LocalDate createdAt;
     private LocalDate updatedAt;
-    private List<Product> products;
+    private List<ProductDTO> products;
 }

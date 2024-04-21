@@ -23,9 +23,9 @@ public class OrderDTO {
     private Double toTalAmount;
     private String status;
     private String shippingAddress;
-    private OrderItem orderItem;
-    private PaymentMethod paymentMethod;
+    private OrderItemDTO orderItem;
+    private PaymentMethodDTO paymentMethod;
     private LocalDate createdAt;
     private LocalDate updatedAt;
-    private User user;
+    private UserDTO user;
 }
