@@ -8,7 +8,7 @@ import lombok.*;
 import java.util.List;
 
 @Entity
-@Table(name = "PaymentMethods")
+@Table(name = "paymentMethods")
 @Data
 @Getter
 @Setter

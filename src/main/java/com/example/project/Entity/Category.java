@@ -6,9 +6,10 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "Categories")
+@Table(name = "categories")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

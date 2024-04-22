@@ -98,7 +98,6 @@ public class AccountService implements AccountImp {
 //                return baseResponse;
 //            }
             Account account = new Account();
-            account.setAccountId(accountDTO.getAccountId());
             account.setAddress(accountDTO.getAddress());
             account.setImage(accountDTO.getImage());
             account.setEmail(accountDTO.getEmail());
@@ -127,7 +126,6 @@ public class AccountService implements AccountImp {
                 baseResponse.setCode(404);
                 return baseResponse;
             }
-            account.setAccountId(accountDTO.getAccountId());
             account.setAddress(accountDTO.getAddress());
             account.setImage(accountDTO.getImage());
             account.setEmail(accountDTO.getEmail());

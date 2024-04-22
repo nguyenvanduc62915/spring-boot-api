@@ -9,7 +9,7 @@ import lombok.*;
 import java.util.List;
 
 @Entity
-@Table(name = "Products")
+@Table(name = "products")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -32,7 +32,7 @@ public class Product extends BaseEntity{
     private String description;
     @Column(name = "active")
     private Boolean active;
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "category_id", foreignKey = @ForeignKey(name = "FK_category_product"))
     private Category category;
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
