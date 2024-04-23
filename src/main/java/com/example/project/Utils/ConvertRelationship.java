@@ -43,6 +43,16 @@ public class ConvertRelationship {
         return categoryDTO;
     }
 
+//    public Category convertToCategory(Category category) {
+//        CategoryDTO categoryDTO = new CategoryDTO();
+//        categoryDTO.setCategoryId(category.getCategoryId());
+//        categoryDTO.setName(category.getName());
+//        categoryDTO.setCreatedAt(category.getCreatedAt());
+//        categoryDTO.setUpdatedAt(category.getUpdatedAt());
+//        return categoryDTO;
+//    }
+
+
     public OrderDTO convertToOrderDTO(Order order) {
         OrderDTO orderDTO = new OrderDTO();
         orderDTO.setOrderId(order.getOrderId());
