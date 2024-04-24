@@ -10,7 +10,7 @@ import java.util.List;
 public interface CategoryImp {
     BaseResponse<List<CategoryDTO>> getAllCategory();
     BaseResponse<CategoryDTO> getCategoryById(Long categoryId);
-    BaseResponse<CategoryDTO> addCategory(CategoryDTO categoryDTO);
+    BaseResponse<CategoryDTO> addCategory(CategoryDTO categoryDTO, Long productId);
     BaseResponse<CategoryDTO> updateCategory(Long categoryId, CategoryDTO categoryDTO);
     BaseResponse<CategoryDTO> deleteCategoryById(Long categoryId);
 }

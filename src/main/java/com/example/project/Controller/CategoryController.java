@@ -33,9 +33,10 @@ public class CategoryController {
 
     @PostMapping("/add")
     public ResponseEntity<BaseResponse<CategoryDTO>> addCategory(
-            @Valid @RequestBody CategoryDTO categoryDTO
+            @Valid @RequestBody CategoryDTO categoryDTO,
+            @RequestParam Long productId
     ) {
-        BaseResponse<CategoryDTO> baseResponse = categoryService.addCategory(categoryDTO);
+        BaseResponse<CategoryDTO> baseResponse = categoryService.addCategory(categoryDTO, productId);
         return new ResponseEntity<>(baseResponse, HttpStatus.valueOf(baseResponse.getCode()));
     }
 

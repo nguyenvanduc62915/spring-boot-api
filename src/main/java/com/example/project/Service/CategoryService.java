@@ -14,15 +14,17 @@ import com.example.project.Utils.ConvertRelationship;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.lang.reflect.Array;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 public class CategoryService implements CategoryImp {
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
 
     @Autowired
     private ConvertRelationship convertRelationship;
@@ -77,6 +79,12 @@ public class CategoryService implements CategoryImp {
             categoryDTO.setName(category.getName());
             categoryDTO.setCreatedAt(category.getCreatedAt());
             categoryDTO.setUpdatedAt(category.getUpdatedAt());
+            List<Product> productList = new ArrayList<>(category.getProducts());
+            List<ProductDTO> productDTOList = productList
+                    .stream()
+                    .map(product -> convertRelationship.convertToProductDTO(product))
+                    .collect(Collectors.toList());
+            categoryDTO.setProducts(productDTOList);
             baseResponse.setData(categoryDTO);
             baseResponse.setMessage("Thành công");
             baseResponse.setCode(200);
@@ -88,23 +96,39 @@ public class CategoryService implements CategoryImp {
     }
 
     @Override
-    public BaseResponse<CategoryDTO> addCategory(CategoryDTO categoryDTO) {
+    public BaseResponse<CategoryDTO> addCategory(CategoryDTO categoryDTO, Long productId) {
         BaseResponse<CategoryDTO> baseResponse = new BaseResponse<>();
         try {
+            if (productId == null) {
+                baseResponse.setMessage("ProductId không được để trống");
+                baseResponse.setCode(400);
+                return baseResponse;
+            }
+
+            Product product = productRepository.findProductById(productId);
+            if (product == null){
+                baseResponse.setMessage("Sản phẩm không tồn tại");
+                baseResponse.setCode(404);
+                return baseResponse;
+            }
+
             Category category = new Category();
             category.setName(categoryDTO.getName());
             category.setCreatedAt(categoryDTO.getCreatedAt());
             category.setUpdatedAt(categoryDTO.getUpdatedAt());
-            categoryRepository.save(category);
-            baseResponse.setData(categoryDTO);
+            category.setProducts(Arrays.asList(product));
+            Category saveCategory = categoryRepository.save(category);
+            CategoryDTO savedCategoryDTO = convertRelationship.convertToCategoryDTO(saveCategory);
+            baseResponse.setData(savedCategoryDTO);
             baseResponse.setMessage("Thành công");
             baseResponse.setCode(200);
-        } catch (Exception ex){
+        } catch (Exception ex) {
             baseResponse.setMessage("Lỗi trong quá trình thêm Category");
             baseResponse.setCode(500);
         }
         return baseResponse;
     }
+
 
     @Override
     public BaseResponse<CategoryDTO> updateCategory(Long categoryId, CategoryDTO categoryDTO) {

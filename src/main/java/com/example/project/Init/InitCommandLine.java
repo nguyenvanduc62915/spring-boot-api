@@ -51,10 +51,13 @@ public class InitCommandLine {
 
     private void seedUser() {
         if (userRepository.count() == 0) {
+            Account account_1 = new Account(1L, "Nguyễn", "Văn Đức", "duc@gmail.com", "0169314654", "123.png", "Hải Dương", null);
+            Account account_2 = new Account(2L, "Nguyễn", "Thành Đạt", "dat@gmail.com", "0885868231", "456.png", "Hải Dương", null);
+            Account account_3 = new Account(3L, "Phạm", "Ngọc Khánh", "khanh@gmail.com", "0944591181", "789.png", "Hải Dương", null);
             userRepository.saveAll(List.of(
-                    new User(1L, "Nguyễn", "Văn Đức", "duc@gmail.com", "123.png", "Hải Dương", "0169314654", null, null),
-                    new User(2L, "Nguyễn", "Thành Đạt", "dat@gmail.com", "456.png", "Hải Dương", "0885868231", null, null),
-                    new User(3L, "Phạm", "Ngọc Khánh", "khanh@gmail.com", "789.png", "Hải Dương", "0944591181", null, null)
+                    new User(1L, "Nguyễn", "Văn Đức", "duc@gmail.com", "123.png", "Hải Dương", "0169314654", null, account_1),
+                    new User(2L, "Nguyễn", "Thành Đạt", "dat@gmail.com", "456.png", "Hải Dương", "0885868231", null, account_2),
+                    new User(3L, "Phạm", "Ngọc Khánh", "khanh@gmail.com", "789.png", "Hải Dương", "0944591181", null, account_3)
             ));
         }
         ;
@@ -103,7 +106,8 @@ public class InitCommandLine {
                     new OrderItem(2L, 10, 5000.0, null, null),
                     new OrderItem(3L, 7, 50000.0, null, null)
             ));
-        };
+        }
+        ;
     }
 
     private void seedPaymentMethod() {
@@ -113,6 +117,7 @@ public class InitCommandLine {
                     new PaymentMethod(2, "Thẻ tín dụng/thẻ ghi nợ", true, null),
                     new PaymentMethod(3, "Thẻ ATM nội địa", true, null)
             ));
-        };
+        }
+        ;
     }
 }
