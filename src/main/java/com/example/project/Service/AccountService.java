@@ -45,7 +45,7 @@ public class AccountService implements AccountImp {
                 accountDTO.setPassword(account.getPassword());
                 accountDTO.setUpdatedAt(account.getUpdatedAt());
                 accountDTO.setFirstName(account.getFirstName());
-                accountDTO.setFirstName(account.getLastName());
+                accountDTO.setLastName(account.getLastName());
                 accountDTOList.add(accountDTO);
             }
             baseResponse.setData(accountDTOList);
@@ -92,11 +92,6 @@ public class AccountService implements AccountImp {
     public BaseResponse<AccountDTO> addAccount(AccountDTO accountDTO) {
         BaseResponse<AccountDTO> baseResponse = new BaseResponse<>();
         try {
-//            if (!userRepository.existsById(userId)){
-//                baseResponse.setMessage("User không tồn tại");
-//                baseResponse.setCode(404);
-//                return baseResponse;
-//            }
             Account account = new Account();
             account.setAddress(accountDTO.getAddress());
             account.setImage(accountDTO.getImage());
@@ -104,6 +99,7 @@ public class AccountService implements AccountImp {
             account.setFirstName(accountDTO.getFirstName());
             account.setPassword(accountDTO.getPassword());
             account.setCreatedAt(accountDTO.getCreatedAt());
+            account.setUpdatedAt(account.getUpdatedAt());
             account.setLastName(accountDTO.getLastName());
             accountRepository.save(account);
             baseResponse.setData(accountDTO);

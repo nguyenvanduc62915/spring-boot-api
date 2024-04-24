@@ -116,10 +116,14 @@ public class CategoryService implements CategoryImp {
             category.setName(categoryDTO.getName());
             category.setCreatedAt(categoryDTO.getCreatedAt());
             category.setUpdatedAt(categoryDTO.getUpdatedAt());
-            category.setProducts(Arrays.asList(product));
+            List<Product> productList = new ArrayList<>();
+            productList.add(product);
+            category.setProducts(productList);
             Category saveCategory = categoryRepository.save(category);
-            CategoryDTO savedCategoryDTO = convertRelationship.convertToCategoryDTO(saveCategory);
-            baseResponse.setData(savedCategoryDTO);
+            product.setCategory(saveCategory);
+            productRepository.save(product);
+            CategoryDTO saveCategoryDTO = convertRelationship.convertToCategoryDTO(saveCategory);
+            baseResponse.setData(saveCategoryDTO);
             baseResponse.setMessage("Thành công");
             baseResponse.setCode(200);
         } catch (Exception ex) {

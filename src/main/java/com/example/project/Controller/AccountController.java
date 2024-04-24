@@ -38,16 +38,16 @@ public class AccountController {
         return new ResponseEntity<>(baseResponse, HttpStatus.valueOf(baseResponse.getCode()));
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/update")
     public ResponseEntity<BaseResponse<AccountDTO>> updateAccount(
-            @PathVariable("id") Long id,
+            @RequestParam("id") Long id,
             @Valid @RequestBody AccountDTO accountDTO) {
         BaseResponse<AccountDTO> baseResponse = accountService.updateAccount(id, accountDTO);
         return new ResponseEntity<>(baseResponse, HttpStatus.valueOf(baseResponse.getCode()));
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<BaseResponse<AccountDTO>> deleteAccount(@PathVariable("id") Long id){
+    @DeleteMapping("/delete")
+    public ResponseEntity<BaseResponse<AccountDTO>> deleteAccount(@RequestParam("id") Long id){
         BaseResponse<AccountDTO> baseResponse = accountService.deleteAccountById(id);
         return new ResponseEntity<>(baseResponse, HttpStatus.valueOf(baseResponse.getCode()));
     }

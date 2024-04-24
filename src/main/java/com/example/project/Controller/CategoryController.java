@@ -40,16 +40,16 @@ public class CategoryController {
         return new ResponseEntity<>(baseResponse, HttpStatus.valueOf(baseResponse.getCode()));
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/update")
     public ResponseEntity<BaseResponse<CategoryDTO>> updateCategory(
-            @PathVariable("id") Long id,
+            @RequestParam("id") Long id,
             @Valid @RequestBody CategoryDTO categoryDTO) {
         BaseResponse<CategoryDTO> baseResponse = categoryService.updateCategory(id, categoryDTO);
         return new ResponseEntity<>(baseResponse, HttpStatus.valueOf(baseResponse.getCode()));
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<BaseResponse<CategoryDTO>> deleteAccount(@PathVariable("id") Long id){
+    @DeleteMapping("/delete")
+    public ResponseEntity<BaseResponse<CategoryDTO>> deleteAccount(@RequestParam("id") Long id){
         BaseResponse<CategoryDTO> baseResponse = categoryService.deleteCategoryById(id);
         return new ResponseEntity<>(baseResponse, HttpStatus.valueOf(baseResponse.getCode()));
     }

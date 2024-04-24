@@ -26,16 +26,20 @@ public class InitCommandLine {
     @Autowired
     private PaymentMethodRepository paymentMethodRepository;
 
+    private boolean isDataSeeded = false;
     @Bean
     public CommandLineRunner seedData() {
         return args -> {
-            seedAccount();
-            seedUser();
-            seedCategory();
-            seedProduct();
-            seedOrder();
-            seedOrderItem();
-            seedPaymentMethod();
+            if (!isDataSeeded) {
+                seedAccount();
+                seedUser();
+                seedCategory();
+                seedProduct();
+                seedOrder();
+                seedOrderItem();
+                seedPaymentMethod();
+                isDataSeeded = true;
+            }
         };
     }
 

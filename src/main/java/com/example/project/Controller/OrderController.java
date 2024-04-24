@@ -38,9 +38,9 @@ public class OrderController {
         return new ResponseEntity<>(baseResponse, HttpStatus.valueOf(baseResponse.getCode()));
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/update")
     public ResponseEntity<BaseResponse<OrderDTO>> updateOrder(
-            @PathVariable("id") Long id,
+            @RequestParam("id") Long id,
             @Valid @RequestBody OrderDTO orderDTO
     ) {
         BaseResponse<OrderDTO> baseResponse = orderService.updateOrder(id, orderDTO);
@@ -48,7 +48,7 @@ public class OrderController {
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<BaseResponse<OrderDTO>> deleteOrder(@PathVariable("id") Long id) {
+    public ResponseEntity<BaseResponse<OrderDTO>> deleteOrder(@RequestParam("id") Long id) {
         BaseResponse<OrderDTO> baseResponse = orderService.deleteOrderById(id);
         return new ResponseEntity<>(baseResponse, HttpStatus.valueOf(baseResponse.getCode()));
     }
