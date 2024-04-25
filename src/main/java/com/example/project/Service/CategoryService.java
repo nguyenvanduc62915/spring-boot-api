@@ -146,7 +146,7 @@ public class CategoryService implements CategoryImp {
             }
             category.setName(categoryDTO.getName());
             category.setCreatedAt(categoryDTO.getCreatedAt());
-            category.setUpdatedAt(category.getUpdatedAt());
+            category.setUpdatedAt(categoryDTO.getUpdatedAt());
             categoryRepository.save(category);
             baseResponse.setData(categoryDTO);
             baseResponse.setMessage("Thành công");
