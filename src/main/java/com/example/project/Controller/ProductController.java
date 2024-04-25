@@ -45,7 +45,13 @@ public class ProductController {
             @RequestParam("id") Long id,
             @Valid @RequestBody ProductDTO productDTO
     ) {
-        BaseResponse<ProductDTO> baseResponse = productService.addProduct(productDTO,id);
+        BaseResponse<ProductDTO> baseResponse = productService.updateProduct(productDTO,id);
+        return new ResponseEntity<>(baseResponse, HttpStatus.valueOf(baseResponse.getCode()));
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<BaseResponse<ProductDTO>> deleteProduct(@RequestParam("id") Long productId){
+        BaseResponse<ProductDTO> baseResponse = productService.deleteProduct(productId);
         return new ResponseEntity<>(baseResponse, HttpStatus.valueOf(baseResponse.getCode()));
     }
 }
